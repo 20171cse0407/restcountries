@@ -1,0 +1,18 @@
+let fixerUri='http://data.fixer.io/api/latest?access_key=API_KEY884c7026e70797d9ecf63f8d892047a2'
+let restUri='https://restcountries.eu/rest/v2/all'
+fetch(restUri)
+.then((resp)=>{
+    return resp.json();
+})
+.then((result1)=>{
+    console.log(result1);
+    let code= result1[11].currencies[0].code;
+    return fetch(fixerUri + '&symbols' + code);
+})
+.then((fixerResp)=>{
+    console.log(fixerResp);
+}
+)
+.catch(function(error){
+    console.log(error);
+})
